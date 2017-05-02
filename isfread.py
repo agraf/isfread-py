@@ -110,7 +110,7 @@ def isfread(filename):
 
     # The only cases that this code (at this moment) not take into acount.
     if ((head['bytenum'] != 2) or (head['bitnum'] != 16) or 
-    cmp(head['encoding'],'BIN') or cmp(head['binformat'],'RI') or 
+    cmp(head['encoding'],'BINARY') or cmp(head['binformat'],'RI') or 
     cmp(head['pointformat'],'Y')):
         FID.close()
         print 'Unable to process IFS file.'
@@ -165,15 +165,39 @@ def isfread(filename):
     
 if __name__ == "__main__":
     import sys
-    filein = sys.argv[1]
-    x,v,head=isfread(filein)
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
+    file3 = sys.argv[3]
+    x1,v1,head1=isfread(file1)
+    x2,v2,head2=isfread(file2)
+    x3,v3,head3=isfread(file3)
 
-    print head
+    #print head1
 
-    for i in xrange(len(x)):
-        print '%g %g'%(x[i],v[i])
+    #for i in xrange(len(x1)):
+    #    print '%g, ' % ( v1[i] ),
+    #print
+    #for i in xrange(len(x2)):
+    #    print '%g, ' % ( v2[i] ),
+    #print
+    #for i in xrange(len(x3)):
+    #    print '%g, ' % ( v3[i] ),
+    #print
 
-
+    old = ( 0, 1, 0 )
+    for i in xrange(len(x1)):
+        # print '%g %g'%(x[i],v[i])
+        v1b = v2b = v3b = 0
+        if v1[i] >= 2.0:
+            v1b = 1
+        if v2[i] >= 2.0:
+            v2b = 1
+        if v3[i] >= 2.0:
+            v3b = 1
+        #print '%d, %g, %g, %g' % ( i, v1[i], v2[i], v3[i] )
+        if ( v1b, v2b, v3b ) != old:
+            print '%d, %d, %d' % ( v1b, v2b, v3b )
+        old = ( v1b, v2b, v3b )
 
 
 
