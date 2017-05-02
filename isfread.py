@@ -167,10 +167,10 @@ if __name__ == "__main__":
     import sys
     file1 = sys.argv[1]
     file2 = sys.argv[2]
-    file3 = sys.argv[3]
+    #file3 = sys.argv[3]
     x1,v1,head1=isfread(file1)
     x2,v2,head2=isfread(file2)
-    x3,v3,head3=isfread(file3)
+    #x3,v3,head3=isfread(file3)
 
     #print head1
 
@@ -188,12 +188,12 @@ if __name__ == "__main__":
     for i in xrange(len(x1)):
         # print '%g %g'%(x[i],v[i])
         v1b = v2b = v3b = 0
-        if v1[i] >= 2.0:
+        if v1[i] >= 1.0:
             v1b = 1
-        if v2[i] >= 2.0:
+        if v2[i] >= 1.0:
             v2b = 1
-        if v3[i] >= 2.0:
-            v3b = 1
+        #if v3[i] >= 2.0:
+        #    v3b = 1
         #print '%d, %g, %g, %g' % ( i, v1[i], v2[i], v3[i] )
         if ( v1b, v2b, v3b ) != old:
             print '%d, %d, %d' % ( v1b, v2b, v3b )
